@@ -263,6 +263,8 @@ class WSFEv1(BaseWS):
                     'FchVtoPago': f.get('fecha_venc_pago'),
                     'MonId': f['moneda_id'],
                     'MonCotiz': f['moneda_ctz'],
+                    'CanMisMonExt': 'N',
+                    'CondicionIVAReceptorId': f['condicion_iva_receptor_id'],
                     'PeriodoAsoc': {
                         'FchDesde': f['periodo_cbtes_asoc'].get('fecha_desde'),
                         'FchHasta': f['periodo_cbtes_asoc'].get('fecha_hasta'),
