@@ -134,7 +134,10 @@ class WSFEv1(BaseWS):
             cbt_desde=0, cbt_hasta=0, imp_total=0.00, imp_tot_conc=0.00, imp_neto=0.00,
             imp_iva=0.00, imp_trib=0.00, imp_op_ex=0.00, fecha_cbte="", fecha_venc_pago=None,
             fecha_serv_desde=None, fecha_serv_hasta=None, #--
-            moneda_id="PES", moneda_ctz="1.0000", caea=None, fecha_hs_gen=None, **kwargs
+            moneda_id="PES", moneda_ctz="1.0000", caea=None, fecha_hs_gen=None, 
+            cancela_misma_moneda_ext=None,
+            condicion_iva_receptor_id=None,
+            **kwargs
             ):
 
         "Creo un objeto factura (interna)"
@@ -162,11 +165,17 @@ class WSFEv1(BaseWS):
         if caea:
             fact['caea'] = caea
 
+        if cancela_misma_moneda_ext is not None:
+            fact['cancela_misma_moneda_ext'] = cancela_misma_moneda_ext
+        if condicion_iva_receptor_id is not None:
+            fact['condicion_iva_receptor_id'] = condicion_iva_receptor_id
+
         self.factura = fact
         return True
 
     def EstablecerCampoFactura(self, campo, valor):
-        if campo in self.factura or campo in ('fecha_serv_desde', 'fecha_serv_hasta', 'caea', 'fch_venc_cae', 'fecha_hs_gen'):
+        if campo in self.factura or campo in ('fecha_serv_desde', 'fecha_serv_hasta', 'caea', 'fch_venc_cae', 'fecha_hs_gen', 'cancela_misma_moneda_ext',
+            'condicion_iva_receptor_id'):
             self.factura[campo] = valor
             return True
         else:
