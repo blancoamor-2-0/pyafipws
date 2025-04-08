@@ -247,6 +247,7 @@ class WSFEv1(BaseWS):
     @inicializar_y_capturar_excepciones
     def CAESolicitar(self):
         f = self.factura
+        print ('\n\n\nfactura..........', f)
         ret = self.client.FECAESolicitar(
             Auth={'Token': self.Token, 'Sign': self.Sign, 'Cuit': self.Cuit},
             FeCAEReq={
